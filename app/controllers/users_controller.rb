@@ -27,6 +27,12 @@ class UsersController < ApplicationController
   end
 
   def update
+  	if @user.update(user_params)
+  		flash[:success] = "Profile successfully updated"
+  		redirect_to root_path
+  	else
+  		render :new
+  	end
   end
 
   private
