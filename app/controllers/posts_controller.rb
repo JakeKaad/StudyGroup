@@ -21,7 +21,6 @@ class PostsController < ApplicationController
 
 		if @post.save
 			flash[:notice] = "Post created."
-			binding.pry
 			redirect_to course_path(@post.postable)
 		else
 			render course_path(@post)

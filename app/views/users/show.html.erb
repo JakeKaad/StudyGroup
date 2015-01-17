@@ -1,5 +1,31 @@
-<p class='pull-right'>
+<p class='user-edit'>
 	<%= link_to "Edit profile", edit_user_path(@user) %>
 </p>
 
 <%= render 'shared/title', header: "Users", sub_header: "#{@user.username}" %>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%= 'active' if params[:tab].nil? %>">
+  	<%= link_to "Posts", user_path(@user) %>
+  </li>
+  <li role="presentation" class="<%= 'active' if params[:tab] == "student" %>">
+  	<%= link_to 'Student', user_path(@user, tab: "student") %>
+  </li>
+  <li role="presentation" class="<%= 'active' if params[:tab] == "teacher" %>">
+  	<%= link_to 'Teacher', user_path(@user, tab: "teacher") %>
+  </li>
+</ul>
+
+<% if params[:tab].nil? %>
+	<% @user.posts.each do |post| %>
+		<%= render 'posts/post', post: post %>
+	<% end %>
+<% elsif params[:tab] == "student" %>
+	<% @user.memberships.where(teacher: false).each do |membership| %>
+		<%= render 'courses/course', course: membership.joinable %>
+	<% end %>
+<% elsif params[:tab] == "teacher" %>
+	<% @user.memberships.where(teacher: true).each do |membership| %>
+		<%= render 'courses/course', course: membership.joinable %>
+	<% end %>
+<% end %>

@@ -1,0 +1,8 @@
+<div class="course-grid col-md-3">
+	<h3><%= link_to course.name, course_path(course), class: "course-a" %></h3>
+	<p> <%= course.description %> </p>
+	<p> Teacher: <%= link_to course.teacher.username, user_path(course.teacher), class: "course-a" %></p>
+	<% unless logged_in? && enrolled?(course) %>
+		<p><%= link_to "Enroll", enroll_course_path(course), method: 'post', class: "btn btn-success btn-small" %></p>
+	<% end %>
+</div>
