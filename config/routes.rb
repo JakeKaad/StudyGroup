@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy]
   resources :posts, except: [:destroy]
+  resources :courses, except: [:destroy]
 end

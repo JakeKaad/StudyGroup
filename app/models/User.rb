@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	has_many :posts
-	
+	has_many :memberships
+	has_many :courses, :through => :memberships, :source => :joinable, :source_type => "Course"
+
 	has_secure_password
 	
 	validates :username, presence: true
