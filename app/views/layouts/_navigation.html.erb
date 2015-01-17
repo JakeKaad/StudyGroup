@@ -1,6 +1,20 @@
 <div class="navbar navbar-default navbar-fixed-top navbar-static-top">
 	<div class="container container-fluid">
-	 <a class='navbar-brand', href='/'>Study Group</a>
-	 <a class="btn btn-default navbar-btn", href='/register'>Register</a>
+			<a class='navbar-brand', href='/'>Study Group</a>
+	  <% if logged_in? %>
+	  	<div class='navbar-btn navbar-right'>
+				<%= link_to "Profile", user_path(current_user), class: "btn btn-default" %>
+			</div>
+			<div class='navbar-btn navbar-right'>
+				<%= link_to "Log Out", logout_path, class: "btn btn-default" %>
+			</div>
+		<% else %>
+	  	<div class='navbar-btn navbar-right'>
+				<%= link_to "Register", register_path, class: "btn btn-default" %>
+			</div>
+			<div class='navbar-btn navbar-right' >
+				<%= link_to "Log In", login_path, class: "btn btn-default" %>
+			</div>
+		<% end %>
 	</div>
 </div>
