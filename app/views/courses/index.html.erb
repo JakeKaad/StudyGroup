@@ -1,0 +1,9 @@
+<%= render 'shared/title', header: "Study Group", sub_header: "Courses" %>
+
+<% @courses.each do |course| %>
+	<div class="well well-span5">
+		<h3><%= link_to course.name, course_path(course), class: "course-a" %></h3>
+		<p> <%= course.description %> </p>
+		<p> Teacher: <%= link_to course.teacher.username, user_path(course.teacher), class: "course-a" %>
+	</div>
+<% end %>

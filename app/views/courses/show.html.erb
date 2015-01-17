@@ -1,1 +1,10 @@
 <%= render 'shared/title', header: "#{@course.name}", sub_header: "Teacher: #{@course.teacher.username}" %>
+<% if teacher? %>
+<% end %>
+
+<%= render 'shared/post_form', group: @course, post: Post.new%>
+
+
+<% @course.posts.each do |post| %>
+	<%= render 'posts/post', post: post %>
+<% end %>

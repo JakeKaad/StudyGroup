@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'posts#index'
+  root to: 'courses#index'
 
   get "register", to: 'users#new' 
   get "login", to: 'sessions#new'
@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   post "login", to: 'sessions#create'
 
   resources :users, except: [:destroy]
-  resources :posts, except: [:destroy]
-  resources :courses, except: [:destroy]
+
+  resources :courses, except: [:destroy] do
+  	member do
+  		post :post
+  	end
+  	
+  	resources :posts, except: [:destroy]
+  end
+
 end

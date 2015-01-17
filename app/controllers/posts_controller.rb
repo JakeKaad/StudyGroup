@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_action :set_post, except: [:index, :new]
+	before_action :set_post, except: [:index, :new, :create]
 
 	def index
 		@posts = Post.all
@@ -12,6 +12,20 @@ class PostsController < ApplicationController
 	end
 
 	def create
+		@post = Post.new(post_params)
+		@post.creator = current_user
+
+		if !params[:course_id].blank?
+			@post.postable = Course.find(params[:course_id])
+		end
+
+		if @post.save
+			flash[:success] = "Post created."
+			binding.pry
+			redirect_to course_path(@post.postable)
+		else
+			render course_path(@post)
+		end
 	end
 
 	def edit
