@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :set_user, except: [:index, :new]
+	before_action :set_user, except: [:index, :new, :create]
 
 	def index
 		@users = User.all
@@ -9,9 +9,18 @@ class UsersController < ApplicationController
   end
 
   def new
+  	@user = User.new
   end
 
   def create
+  	@user = User.new(user_params)
+
+  	if @user.save
+  		flash[:success] = "Profile successfully created"
+  		redirect_to root_path
+  	else
+  		render :new
+  	end
   end
 
   def edit
