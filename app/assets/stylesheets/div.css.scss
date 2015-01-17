@@ -1,0 +1,41 @@
+#main {
+	float: right;
+	width:80%;
+	background: #D3D3D3;
+	height: 1000px;
+	padding: 25px;
+	padding-right: 50px;
+}
+
+
+.container {
+  margin-left: 135px;
+}
+
+#sidebar {
+	float: left;
+	width:20%;
+	background: black;
+	color: white;
+	height: 1000px;
+	text-align: center;
+}
+
+#sidebar-header {
+	padding-top: 75px;
+	margin-bottom: 30px;
+}
+
+.course-list-item {
+	text-align: left;
+}
+
+.sidebar-a {
+	color: white;
+	text-decoration: none !important
+}
+
+
+.sidebar-list {
+	list-style-type: none;
+}

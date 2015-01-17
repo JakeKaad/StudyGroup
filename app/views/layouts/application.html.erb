@@ -31,7 +31,12 @@
         </div>
         <footer>
         </footer>
-      </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+      </div> 
+    </div> 
+    <% if logged_in? %>
+      <div id="sidebar">
+        <%= render 'layouts/sidebar'%>
+      </div>
+    <% end %>
   </body>
 </html>
