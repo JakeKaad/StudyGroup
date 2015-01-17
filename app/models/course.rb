@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+	has_many :studygroups
 	has_many :memberships, as: :joinable
 	has_many :users, through: :memberships
 	has_many :posts, as: :postable
@@ -8,7 +9,5 @@ class Course < ActiveRecord::Base
 		self.memberships.find_by(teacher: true).user
 	end
 
-	def enrolled?
-		!!self.memberships.find_by(user_id: current_user.id)
-	end
+	
 end
