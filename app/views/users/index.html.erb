@@ -1,0 +1,7 @@
+<%= render "shared/title", header: "Users", sub_header: "Index" %>
+
+<% @users.each do |user| %>
+	<div class="well">
+		<%= link_to user.username, user_path(user) %>
+	</div>
+<% end %>
