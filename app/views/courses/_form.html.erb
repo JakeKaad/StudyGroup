@@ -1,0 +1,16 @@
+<div class="well">
+	<%= render 'shared/error', obj: @course %>
+	<%= form_for @course do |f| %>
+		<div class="control-group">
+			<%= f.label      :name %><br/>
+			<%= f.text_field :name %><br/>
+		</div>
+
+		<div class="control-group">
+			<%= f.label      :description %><br/>
+			<%= f.text_area  :description, rows: 3 %><br/>
+		</div>
+
+		<%= f.submit "Create course", class: "btn btn-success" %>
+	<% end %>
+</div>

@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   resources :courses, except: [:destroy] do
   	member do
-  		post :post
+  		post :enroll
   	end
-  	
+
   	resources :posts, except: [:destroy]
   end
 

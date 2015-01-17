@@ -7,4 +7,8 @@ class Course < ActiveRecord::Base
 	def teacher
 		self.memberships.find_by(teacher: true).user
 	end
+
+	def enrolled?
+		!!self.memberships.find_by(user_id: current_user.id)
+	end
 end

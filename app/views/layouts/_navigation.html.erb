@@ -8,6 +8,9 @@
 			<div class='navbar-btn navbar-right'>
 				<%= link_to "Log Out", logout_path, class: "btn btn-default" %>
 			</div>
+			<div class='navbar-btn navbar-right'>
+				<%= link_to "Create course", new_course_path, class: "btn btn-default" %>
+			</div>
 		<% else %>
 	  	<div class='navbar-btn navbar-right'>
 				<%= link_to "Register", register_path, class: "btn btn-default" %>

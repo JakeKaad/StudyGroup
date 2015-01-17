@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 		end
 
 		if @post.save
-			flash[:success] = "Post created."
+			flash[:notice] = "Post created."
 			binding.pry
 			redirect_to course_path(@post.postable)
 		else

@@ -1,4 +1,4 @@
-<h4 id="sidebar-header"> <%= current_user.username %> </h4>
+<h4 id="sidebar-header"> <%= link_to current_user.username, user_path(current_user), class: 'sidebar-a' %> </h4>
 
 <h6 class="sidebar-container"> My Courses </h6>
 
