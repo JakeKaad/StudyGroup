@@ -8,16 +8,15 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy]
 
-  resources :courses, except: [:destroy] do
+  resources :courses, except: [:destroy], shallow: true do
   	member do
   		post :enroll
-
-      resources :study_groups, except: [:index, :destroy] do
-        resources :posts, only: [:new, :create, :edit, :update]
-      end
-  	end
-
+    end
   	resources :posts, except: [:destroy]
+  end
+
+  resources :study_groups, except: [:index, :destroy] do
+      resources :posts, except: [:destroy]
   end
 
 end

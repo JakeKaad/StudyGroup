@@ -3,6 +3,7 @@ class StudyGroupsController < ApplicationController
 
 	def show
 		@new_post = true if params[:new_post] == "true"
+		@posts = @study_group.posts.each.sort_by { |post| post.created_at}.reverse 
 	end
 
 	def new

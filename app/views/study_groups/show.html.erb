@@ -8,7 +8,7 @@
   	<%= link_to 'Students', study_group_path(@study_group, tab: "students") %>
   </li>
 </ul>
-
+ 
 <% if params[:tab].nil? %>
 	<h3>Posts 
 		<span class="label label-default">
@@ -16,7 +16,7 @@
 		</span>
 	</h3>
 	<%= render 'post_form', group: @study_group, post: Post.new%>
-	<% @study_group.posts.each do |post| %>
+	<% @posts.each do |post| %>
 		<%= render 'posts/post', post: post %>
 	<% end %>
 <% elsif params[:tab] == "students" %>
