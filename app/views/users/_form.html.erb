@@ -1,17 +1,17 @@
 <div class="well">
 <%= render 'shared/error', obj: @user %>
 	<%= form_for @user do |f| %>
-		<div class="control-group">
+		<div class="form-group">
 			<%= f.label      :username %><br/>
 			<%= f.text_field :username %><br/>
 		</div>
 
-		<div class='control-group'>
+		<div class='form-group'>
 			<%= f.label :password %><br/>
 			<%= f.password_field :password %><br/>
 		</div>
 
-		<div class='control-group'>
+		<div class='form-group'>
 		<%= f.label :password_confirmation, "Confirm Password" %><br/>
 		<%= f.password_field :password_confirmation %><br/>
 		</div>

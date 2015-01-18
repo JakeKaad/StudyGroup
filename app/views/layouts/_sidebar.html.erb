@@ -1,22 +1,40 @@
-<h4 id="sidebar-header"> <%= link_to current_user.username, user_path(current_user), class: 'sidebar-a' %> </h4>
 
-<h6 class="sidebar-list-header"> My Courses </h6>
+<% if logged_in? %>
+	<h4 id="sidebar-header"> <%= link_to current_user.username, user_path(current_user), class: 'sidebar-a' %> </h4>
 
-<ul class="sidebar-list">
-	<%current_user.courses.each do |course| %>
-		<li class="course-list-item"> 
-			<%= link_to "#{course.name}", course_path(course), class: 'sidebar-a' %> 
-		</li>
-	<% end %>
-</ul>
+	<h6 class="sidebar-list-header"> My Courses </h6>
 
-<h6 class="sidebar-list-header"> My Study Groups </h6>
+	<ul class="sidebar-list">
+		<%current_user.courses.each do |course| %>
+			<li class="course-list-item"> 
+				<%= link_to "#{course.name}", course_path(course), class: 'sidebar-a' %> 
+			</li>
+		<% end %>
+	</ul>
 
-<ul class="sidebar-list">
-	<%current_user.study_groups.each do |study_group| %>
-		<li class="course-list-item"> 
-			<%= link_to "#{study_group.name}", study_group_path(study_group), class: 'sidebar-a' %> 
-		</li>
-	<% end %>
-</ul>
+	<h6 class="sidebar-list-header"> My Study Groups </h6>
+
+	<ul class="sidebar-list">
+		<%current_user.study_groups.each do |study_group| %>
+			<li class="course-list-item"> 
+				<%= link_to "#{study_group.name}", study_group_path(study_group), class: 'sidebar-a' %> 
+			</li>
+		<% end %>
+	</ul>
+<% else %>
+	<div class="well" id="sidebar-well">
+		<%= form_tag "/login" %>
+			<div class='form-group'>
+				<%= label_tag "username" %>
+				<%= text_field_tag "username" %>
+			</div>
+
+			<div class='form-group'>
+				<%= label_tag "password" %>
+				<%= password_field_tag "password" %>
+			</div>
+			<%= submit_tag "Log in", class: "btn btn-success" %>
+	</div>
+<% end %>
+
 
