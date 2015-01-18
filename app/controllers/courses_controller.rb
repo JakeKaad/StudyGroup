@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
 
 	def show
 		@new_post = true if params[:new_post] == "true"
+		@posts = @course.posts.each.sort_by { |post| post.created_at}.reverse 
 	end
 
 	def new

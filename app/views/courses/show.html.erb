@@ -2,9 +2,36 @@
 <% if teacher? %>
 <% end %>
 
-<%= render 'shared/post_form', group: @course, post: Post.new%>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%= 'active' if params[:tab].nil? %>">
+  	<%= link_to "Posts", course_path(@course) %>
+  </li>
+  <li role="presentation" class="<%= 'active' if params[:tab] == "students" %>">
+  	<%= link_to 'Students', course_path(@course, tab: "students") %>
+  </li>
+  <li role="presentation" class="<%= 'active' if params[:tab] == "study_groups" %>">
+  	<%= link_to 'Study Groups', course_path(@course, tab: "study_groups") %>
+  </li>
+</ul>
 
-
-<% @course.posts.each do |post| %>
-	<%= render 'posts/post', post: post %>
+<%if params[:tab].nil? %>
+	<%= render 'shared/post_form', group: @course, post: Post.new%>
+	<% @posts.each do |post| %>
+		<%= render 'posts/post', post: post %>
+	<% end %>
+<% elsif params[:tab] == "students" %>
+	<% @course.students.each do |student| %>
+		<%= render'students', student: student %>
+	<% end %>
+<% elsif params[:tab] == "study_groups" %>
+	<% @course.study_groups.each do |study_group| %>
+		<div class='well study-group-well'>
+			<h3 class="study-group-title">
+				<%= link_to "#{study_group.name}", study_group_path(study_group) %>
+			</h3>
+				<% study_group.users.each do |student| %>
+					<%= render'students', student: student %>
+				<% end %>
+		</div>
+	<% end %>
 <% end %>
