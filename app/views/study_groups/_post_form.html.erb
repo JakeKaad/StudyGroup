@@ -1,6 +1,6 @@
 <% if @new_post == true %>
 	<%= render 'shared/error', obj: group %>
-	<%= form_for [group, post] do |f| %>
+	<%= form_for [@study_group, @post], url: new_study_group_post_path(@study_group) do |f| %>
 		<div class='control-group'>
 			<%= f.label 		 :title %><br/>
 			<%= f.text_field :title %>

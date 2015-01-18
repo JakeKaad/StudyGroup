@@ -15,6 +15,11 @@
 </ul>
 
 <%if params[:tab].nil? %>
+<h3>Posts 
+	<span class="label label-default">
+		<%= link_to 'New Post', course_path(@course, new_post: true), class: "sidebar-a" %>
+	</span>
+</h3>
 	<%= render 'shared/post_form', group: @course, post: Post.new%>
 	<% @posts.each do |post| %>
 		<%= render 'posts/post', post: post %>

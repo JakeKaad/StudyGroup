@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   	member do
   		post :enroll
 
-      resources :study_groups, except: [:index, :destroy]
+      resources :study_groups, except: [:index, :destroy] do
+        resources :posts, only: [:new, :create, :edit, :update]
+      end
   	end
 
   	resources :posts, except: [:destroy]

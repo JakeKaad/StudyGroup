@@ -1,10 +1,22 @@
 <h4 id="sidebar-header"> <%= link_to current_user.username, user_path(current_user), class: 'sidebar-a' %> </h4>
 
-<h6 class="sidebar-container"> My Courses </h6>
+<h6 class="sidebar-list-header"> My Courses </h6>
 
 <ul class="sidebar-list">
 	<%current_user.courses.each do |course| %>
-		<li class="course-list-item"> <%= link_to "#{course.name}", course_path(course), class: 'sidebar-a' %> </li>
+		<li class="course-list-item"> 
+			<%= link_to "#{course.name}", course_path(course), class: 'sidebar-a' %> 
+		</li>
+	<% end %>
+</ul>
+
+<h6 class="sidebar-list-header"> My Study Groups </h6>
+
+<ul class="sidebar-list">
+	<%current_user.study_groups.each do |study_group| %>
+		<li class="course-list-item"> 
+			<%= link_to "#{study_group.name}", study_group_path(study_group), class: 'sidebar-a' %> 
+		</li>
 	<% end %>
 </ul>
 

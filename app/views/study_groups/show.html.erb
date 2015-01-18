@@ -1,0 +1,26 @@
+<%= render 'shared/title', header: "#{@study_group.course.name}", sub_header: "#{@study_group.name}" %>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%= 'active' if params[:tab].nil? %>">
+  	<%= link_to "Posts", study_group_path(@study_group) %>
+  </li>
+  <li role="presentation" class="<%= 'active' if params[:tab] == "students" %>">
+  	<%= link_to 'Students', study_group_path(@study_group, tab: "students") %>
+  </li>
+</ul>
+
+<% if params[:tab].nil? %>
+	<h3>Posts 
+		<span class="label label-default">
+			<%= link_to 'New Post', study_group_path(@study_group, new_post: true), class: "sidebar-a" %>
+		</span>
+	</h3>
+	<%= render 'post_form', group: @study_group, post: Post.new%>
+	<% @study_group.posts.each do |post| %>
+		<%= render 'posts/post', post: post %>
+	<% end %>
+<% elsif params[:tab] == "students" %>
+	<%  @study_group.members.each do |student| %>
+		<%= render 'courses/students', student: student %>
+	<% end %>
+<% end %>
