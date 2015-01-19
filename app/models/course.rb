@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+	include Sluggable
 	has_many :study_groups
 	has_many :memberships, as: :joinable
 	has_many :users, through: :memberships
@@ -6,6 +7,8 @@ class Course < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates :description, presence: true
+
+	sluggable_column :name
 	
 
 	def teacher

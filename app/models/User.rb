@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	include Sluggable
+
 	has_many :posts
 	has_many :memberships
 	has_many :courses, :through => :memberships, :source => :joinable, :source_type => "Course"
@@ -8,5 +10,7 @@ class User < ActiveRecord::Base
 	
 	validates :username, presence: true
 	validates :password, length: { minimum: 5}, allow_nil: true
+
+	sluggable_column :username
 
 end

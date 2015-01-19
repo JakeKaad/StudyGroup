@@ -1,4 +1,6 @@
 class StudyGroup < ActiveRecord::Base
+	include Sluggable
+
 	belongs_to :course
 	has_many :memberships, as: :joinable
 	has_many :users, through: :memberships
@@ -6,6 +8,8 @@ class StudyGroup < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates :description, presence: true
+
+	sluggable_column :name
 
 	def members
 		members = []

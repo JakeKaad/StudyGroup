@@ -40,7 +40,7 @@ class StudyGroupsController < ApplicationController
 	private
 
 		def set_study_group
-			@study_group = StudyGroup.find(params[:id])
+			@study_group = StudyGroup.find_by(params[:slug])
 		end
 
 		def member?
