@@ -19,9 +19,9 @@ class PostsController < ApplicationController
 		@post.creator = current_user
 		
 		if course?
-			@post.postable = Course.find(params[:course_id])
+			@post.postable = Course.find_by slug: params[:slug]
 		elsif study_group?
-			@post.postable = StudyGroup.find(params[:study_group_id])
+			@post.postable = StudyGroup.find_by slug: params[:study_group_id]
 		end
 
 		if course? && @post.save
