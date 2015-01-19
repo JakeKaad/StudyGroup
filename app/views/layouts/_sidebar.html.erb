@@ -26,12 +26,12 @@
 		<%= form_tag "/login" %>
 			<div class='form-group'>
 				<%= label_tag "username" %>
-				<%= text_field_tag "username" %>
+				<span class='black-text'><%= text_field_tag "username" %></span>
 			</div>
 
 			<div class='form-group'>
 				<%= label_tag "password" %>
-				<%= password_field_tag "password" %>
+				<span class='black_text'><%= password_field_tag "password" %></span>
 			</div>
 			<%= submit_tag "Log in", class: "btn btn-success" %>
 	</div>
