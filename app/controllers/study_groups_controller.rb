@@ -32,7 +32,7 @@ class StudyGroupsController < ApplicationController
 			flash[:notice] = "Successfully joined #{@study_group.name}"
 			redirect_to study_group_path(@study_group)
 		else
-			flash[:notice] = "You can't join that Study Group"
+			flash[:error] = "You can't join that Study Group"
 			redirect_to root_path
 		end
 	end
