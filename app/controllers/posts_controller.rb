@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 	before_action :set_post, except: [:index, :new, :create]
-	before_action :require_enrollment, except: [:index, :new, :show]
-	before_action :require_creator, only: [:edit, :update]
+	#before_action :require_enrollment, except: [:index, :new, :show]
+	#before_action :require_creator, only: [:edit, :update]
 
 
 	def index
@@ -40,6 +40,7 @@ class PostsController < ApplicationController
 	end
 
 	def edit
+		binding.pry
 		@new_post = true
 	end
 
@@ -66,7 +67,7 @@ class PostsController < ApplicationController
 		end
 
 		def set_post
-			@post = Post.find_by(params[:slug])
+			@post = Post.find_by slug: params[:post_id]
 		end
 
 		def require_creator
