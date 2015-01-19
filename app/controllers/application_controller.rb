@@ -38,18 +38,18 @@ class ApplicationController < ActionController::Base
   end
 
   def course?
-    Course.find_by slug: params[:slug]
+    Course.find_by slug: params[:course_id]
   end
 
   def study_group?
-    StudyGroup.find_by slug: params[:slug]
+    StudyGroup.find_by slug: params[:study_group_id]
   end
 
   def find_joinable
     if course?
-      Course.find_by slug: params[:slug]
+      Course.find_by slug: params[:course_id]
     elsif study_group?
-      StudyGroup.find_by slug: params[:slug]
+      StudyGroup.find_by slug: params[:study_group_id]
     end
   end
 
