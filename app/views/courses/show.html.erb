@@ -44,6 +44,11 @@
 				<% study_group.users.each do |student| %>
 					<%= render'students', student: student %>
 				<% end %>
+			<% unless logged_in? && enrolled?(study_group) %>
+				<p>
+					<%= link_to "Join Group", enroll_study_group_path(study_group, user_id: current_user.id), method: 'post', class: "btn btn-success btn-small" %>
+				</p>
+			<% end %>
 		</div>
 	<% end %>
 <% end %>

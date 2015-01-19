@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     access_denied unless logged_in? && teacher?
   end
 
-  def enrolled?(joinable)
-    joinable.memberships.find_by(user_id: current_user.id)
+  def enrolled?(course)
+    course.memberships.find_by(user_id: current_user.id)
   end
 
   def require_enrollment
