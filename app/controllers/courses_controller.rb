@@ -59,7 +59,7 @@ class CoursesController < ApplicationController
 	private
 
 		def set_course
-			@course = Course.find_by(params[:slug])
+			@course = Course.find_by slug: params[:id]
 		end
 
 		def course_params

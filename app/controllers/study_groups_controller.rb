@@ -12,7 +12,7 @@ class StudyGroupsController < ApplicationController
 	end
 
 	def create
-		@course = find_joinable
+		@course = Course.find_by id: params[:course_id]
 		@study_group = StudyGroup.new(params.require(:study_group).permit(:name, :description))
 		@study_group.course = @course
 
@@ -40,7 +40,7 @@ class StudyGroupsController < ApplicationController
 	private
 
 		def set_study_group
-			@study_group = StudyGroup.find_by(params[:slug])
+			@study_group = StudyGroup.find_by slug: params[:id]
 		end
 
 		def member?
