@@ -29,6 +29,13 @@
 		<%= render'students', student: student %>
 	<% end %>
 <% elsif params[:tab] == "study_groups" %>
+	<h3>Study Groups
+		<span class="label label-default">
+			<%= link_to 'New Study Group', course_path(@course, new_study_group: true, tab: "study_groups"), 
+					class: " sidebar-a" %>
+		</span>
+	</h3>
+	<%= render 'study_group_form', course: @course, study_group: @study_group %>
 	<% @course.study_groups.each do |study_group| %>
 		<div class='well study-group-well'>
 			<h3 class="study-group-title">

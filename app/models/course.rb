@@ -3,6 +3,9 @@ class Course < ActiveRecord::Base
 	has_many :memberships, as: :joinable
 	has_many :users, through: :memberships
 	has_many :posts, as: :postable
+
+	validates :name, presence: true
+	validates :description, presence: true
 	
 
 	def teacher

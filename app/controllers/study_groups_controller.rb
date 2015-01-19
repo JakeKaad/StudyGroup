@@ -10,6 +10,17 @@ class StudyGroupsController < ApplicationController
 	end
 
 	def create
+		@course = find_joinable
+		@study_group = StudyGroup.new(params.require(:study_group).permit(:name, :description))
+		@study_group.course = @course
+
+		if @study_group.save
+			flash[:notice] = "Study Group created."
+			redirect_to course_path(@course, tab: "study_groups")
+		else
+			flash[:error] = "Something went wrong"
+			render 'courses/show'
+		end
 	end
 
 	private

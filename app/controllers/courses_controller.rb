@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
 	def show
 		@new_post = true if params[:new_post] == "true"
 		@posts = @course.posts.each.sort_by { |post| post.created_at}.reverse 
+		@study_group = StudyGroup.new
 	end
 
 	def new
@@ -25,7 +26,7 @@ class CoursesController < ApplicationController
 			redirect_to course_path(@course)
 		else
 			flash[:error] = "Course not created"
-			render 'new'
+			render :new
 		end
 	end
 
@@ -33,6 +34,14 @@ class CoursesController < ApplicationController
 	end
 
 	def update
+		if @course.update(course_params)
+			@course.memberships << @membership
+			flash[:notice] = "Course updated."
+			redirect_to course_path(@course)
+		else
+			flash[:error] = "Course not created"
+			render :edit
+		end
 	end
 
 	def enroll

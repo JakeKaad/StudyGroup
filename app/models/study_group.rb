@@ -4,6 +4,9 @@ class StudyGroup < ActiveRecord::Base
 	has_many :users, through: :memberships
 	has_many :posts, as: :postable
 
+	validates :name, presence: true
+	validates :description, presence: true
+
 	def members
 		members = []
 		self.memberships.each { |membership|  members << membership.user }

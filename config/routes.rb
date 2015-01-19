@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :users, except: [:destroy]
 
-  resources :courses, except: [:destroy], shallow: true do
+  resources :courses, except: [:destroy] do
   	member do
   		post :enroll
     end
