@@ -26,7 +26,6 @@ class StudyGroupsController < ApplicationController
 	end
 
 	def enroll
-		binding.pry
 		@membership = Membership.new(joinable: @study_group, user_id: current_user.id)
 
 		if @membership.save

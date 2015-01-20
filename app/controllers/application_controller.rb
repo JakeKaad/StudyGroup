@@ -58,9 +58,6 @@ class ApplicationController < ActionController::Base
     if params[:course_id] 
       course = Course.find(params[:course_id])
       course.memberships.find_by(user_id: current_user.id)
-    elsif params[:tab]
-      course = Course.find_by slug: params[:id]
-      course.memberships.find_by(user_id: current_user.id)
     else
       study_group = StudyGroup.find_by slug: params[:id]
       study_group.course.memberships.find_by(user_id: current_user.id)
