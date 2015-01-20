@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 	before_action :set_user, except: [:index, :new, :create]
+  before_action :require_owner, only: [:edit, :update]
 
 	def index
 		@users = User.all
 	end
 
-	def show
+	def show;
   end
 
   def new
@@ -45,5 +46,9 @@ class UsersController < ApplicationController
   	def set_user
   		@user = User.find_by slug: params[:id]
   	end
+
+    def require_owner
+      access_denied unless current_user == @user
+    end
 
 end

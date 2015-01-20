@@ -1,7 +1,7 @@
 class StudyGroupsController < ApplicationController
 	before_action :set_study_group, only: [:show, :enroll]
 	before_action :require_member, only: [:show]
-	before_action :require_course_enrollment, only: [:enroll]
+	before_action :require_course_enrollment, only: [:enroll, :create]
 
 	def show
 		@new_post = true if params[:new_post] == "true"
@@ -26,6 +26,7 @@ class StudyGroupsController < ApplicationController
 	end
 
 	def enroll
+		binding.pry
 		@membership = Membership.new(joinable: @study_group, user_id: current_user.id)
 
 		if @membership.save
@@ -52,7 +53,10 @@ class StudyGroupsController < ApplicationController
 		end
 
 		def require_course_enrollment
-			@study_group.course.memberships.find_by(user_id: current_user.id)
+			access_denied unless enrolled_in_course?
 		end
+
+
+
 
 end

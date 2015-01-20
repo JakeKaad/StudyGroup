@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
-  helper_method :current_user, :logged_in?, :teacher?, :enrolled?, :find_joinable, :course?, :study_group?
+  helper_method :current_user, :logged_in?, :teacher?, :enrolled?, :find_joinable, :course?, :study_group?, :enrolled_in_course?
 
   def logged_in?
   	!!current_user
@@ -53,6 +53,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  
+  def enrolled_in_course?
+    if params[:course_id] 
+      course = Course.find(params[:course_id])
+      course.memberships.find_by(user_id: current_user.id)
+    elsif params[:tab]
+      course = Course.find_by slug: params[:id]
+      course.memberships.find_by(user_id: current_user.id)
+    else
+      study_group = StudyGroup.find_by slug: params[:id]
+      study_group.course.memberships.find_by(user_id: current_user.id)
+    end
+  end
 
   protect_from_forgery with: :exception
 end
